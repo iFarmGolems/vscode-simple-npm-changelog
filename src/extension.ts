@@ -31,12 +31,12 @@ export function activate(context: vscode.ExtensionContext) {
         );
 
         const repositoryAddress = (npmResponse.data.repository
-          .url as string).match(/https?.+?(?=\.git)/);
+          .url as string).match(/(github|gitlab).+?(?=\.git)/);
 
         if (repositoryAddress) {
           let rightOption;
 
-          const repoAddress = repositoryAddress[0];
+          const repoAddress = 'https://' + repositoryAddress[0];
           const repoFilePrefix = '/blob/master/';
 
           try {
