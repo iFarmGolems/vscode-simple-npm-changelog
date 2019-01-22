@@ -3,6 +3,7 @@
   "displayName": "Simple Npm Changelog",
   "description": "Looks at package.json and tries to get latest changelog for chosen module",
   "version": "1.0.0",
+  "publisher": "iFarmGolems",
   "engines": {
     "vscode": "^1.30.0"
   },
