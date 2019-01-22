@@ -4,6 +4,10 @@
   "description": "Looks at package.json and tries to get latest changelog for chosen module",
   "version": "1.0.0",
   "publisher": "iFarmGolems",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iFarmGolems/vscode-simple-npm-changelog"
+  },
   "engines": {
     "vscode": "^1.30.0"
   },
