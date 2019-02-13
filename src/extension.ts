@@ -28,25 +28,25 @@ export function activate(context: vscode.ExtensionContext) {
         const repositoryAddress = (npmResponse.data.repository
           .url as string).match(/(github|gitlab).+?(?=\.git)/);
 
-        if (repositoryAddress) {
+        if (repositoryAddress && repositoryAddress[0]) {
           let rightOption;
 
-          const repoAddress = 'https://' + repositoryAddress[0];
-          const repoFilePrefix = '/blob/master/';
+          const repoAddress =
+            'https://' + repositoryAddress[0] + '/blob/master/';
 
           try {
             const fileName = 'CHANGELOG.md';
-            await get(repoAddress + repoFilePrefix + fileName);
+            await get(repoAddress + fileName);
             rightOption = fileName;
           } catch (error) {
             try {
               const fileName = 'CHANGELOG';
-              await get(repoAddress + repoFilePrefix + fileName);
+              await get(repoAddress + fileName);
               rightOption = fileName;
             } catch (error) {
               try {
                 const fileName = 'CHANGELOG.txt';
-                await get(repoAddress + repoFilePrefix + fileName);
+                await get(repoAddress + fileName);
                 rightOption = fileName;
               } catch (error) {}
             }
@@ -55,13 +55,17 @@ export function activate(context: vscode.ExtensionContext) {
           if (rightOption) {
             vscode.commands.executeCommand(
               'vscode.open',
-              vscode.Uri.parse(repoAddress + repoFilePrefix + rightOption)
+              vscode.Uri.parse(repoAddress + rightOption)
             );
           } else {
             vscode.window.showErrorMessage(
               'Could not find changelog for package ' + chosenPackage
             );
           }
+        } else {
+          vscode.window.showErrorMessage(
+            'Could not parse repository address for package ' + chosenPackage
+          );
         }
       } else {
         vscode.window.showErrorMessage('No project opened!');
