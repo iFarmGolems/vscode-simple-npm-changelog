@@ -1,4 +1,4 @@
-# Simple Npm Changelog
+# NPM Package changelog
 
 ## Requirements
 
