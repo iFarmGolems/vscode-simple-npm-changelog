@@ -2,7 +2,7 @@
   "name": "simple-npm-changelog",
   "displayName": "NPM Package Changelog",
   "description": "Looks at package.json and tries to get latest changelog for chosen module",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "iFarmGolems",
   "repository": {
     "type": "git",
